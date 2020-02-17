@@ -16,8 +16,8 @@ export default class App extends Component {
 
     async loadPokemon() {
         const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.props.match.params.pokemon}`);
-        const pokemonData = response.results;
-
+        const pokemonData = response.body.results;
+        
         // set value of pokedeck
         this.setState({ pokedeck: pokemonData })
     }
@@ -36,11 +36,11 @@ export default class App extends Component {
     // Define handleSearch methods and pass them as props
     async handleSearch () {
         const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}`);
-        const pokemonData = response.results;
+        const pokemonData = response.body.results;
 
         this.setState({ pokedeck: pokemonData });
 
-        this.props.history.push(this.state.searchQuery);
+        // this.props.history.push(this.state.searchQuery);
     }
 
   render() {
@@ -54,8 +54,7 @@ export default class App extends Component {
             )
         }
         )
-        console.log(pokedeck)
-
+        
         return (
         <div className = "body">
             <Header />
