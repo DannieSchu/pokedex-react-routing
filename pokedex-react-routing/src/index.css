@@ -65,7 +65,7 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 180px;
+  width: 280px;
   color: white;
 }
 
@@ -165,7 +165,7 @@ a {
 }
 
 a:hover {
-  background-color: white; 
+  background-color: rgb(202, 191, 182); 
 
 }
 

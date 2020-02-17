@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-// import Search from './Search';
+import { NavLink } from 'react-router-dom';
 
 export default class Header extends Component {
     render() {
@@ -8,12 +7,11 @@ export default class Header extends Component {
             <header>
                 <div className="heading-container">
                     <h1>Pokemon</h1>
-                    {/* <Search /> */}
                 </div>
                 <div className="links">
-                    {/* <li><Link to="/">Home</Link></li> */}
-                    <Link to="/pokemon">Pokemon</Link>
-                    <Link to="/about">About</Link>
+                    <NavLink to="/home" activeStyle={{backgroundColor: "rgb(200, 150, 85)" }}>Home</NavLink>
+                    <NavLink to="/pokemon" activeStyle={{backgroundColor: "rgb(190, 132, 85)" }}>Pokemon</NavLink>
+                    <NavLink to="/about" activeStyle={{backgroundColor: "rgb(190, 171, 85)" }}>About</NavLink>
                 </div>
             </header>
         )
