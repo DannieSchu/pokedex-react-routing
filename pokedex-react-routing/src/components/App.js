@@ -16,11 +16,11 @@ export default class App extends Component {
         <Header />
         <div className = 'container'>
           <Switch>
-            {/* <Route exact path="/" render ={ () => <Redirect to="/home" component={Home} /> } /> */}
+            {/* <Route exact path="/" render ={ () => <Redirect to="/:pokemon" component={Home} /> } /> */}
+            <Route path="/about" component={About} />
             <Route path="/pokemon/:pokemon" component={Detail} />
             <Route exact path="/:pokemon" component={Home} />
             <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
             <Route component={NotFound} />
           </Switch>
         </div>

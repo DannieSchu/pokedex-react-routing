@@ -45,8 +45,16 @@ header h1 {
   color: rgb(156,192,107);
 }
 
+.search-div {
+  display: relative;
+}
+
+.form-container {
+  display: fixed;
+  margin-top: 100px;
+}
+
 form.options {
-  margin-top: 170px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -165,14 +173,14 @@ button.search:hover {
   background-color: rgb(131, 177, 113); 
 
 }
-a {
+.links a {
   color: rgb(16, 78, 16);;
   cursor: pointer;
   background-color: rgb(131, 177, 113);
   padding: 10px;
 }
 
-a:hover {
+.links a:hover {
   background-color: rgb(202, 191, 182); 
 
 }
@@ -195,4 +203,16 @@ p.results {
   display: flex;
   flex-direction: column;
   align-items: space-around;
+}
+
+.detail-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+table {
+  display: flex;
+  flex-direction: column;
+  
 }

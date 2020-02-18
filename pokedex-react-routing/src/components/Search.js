@@ -14,7 +14,7 @@ export default class Search extends Component {
                                 name="search"
                                 placeholder="Search for your favorite Pokemon"
                                 onChange = {this.props.handleChange}
-                                value = {this.props.searchQuery}
+                                value = {this.props.searchQuery || ''}
                                 />
                         </label>
                     </div>

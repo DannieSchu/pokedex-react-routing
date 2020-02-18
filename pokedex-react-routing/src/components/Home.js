@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import request from 'superagent';
 import Search from './Search';
+import getPokemon from './GetPokemon';
 
 
 // Import Components
@@ -15,7 +16,7 @@ export default class App extends Component {
     };
 
     async loadPokemon() {
-        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.props.match.params.pokemon}`);
+        const response = await getPokemon(this.props.match.params.pokemon);
         const pokemonData = response.body.results;
         
         // set value of pokedeck
@@ -26,7 +27,12 @@ export default class App extends Component {
     async componentDidMount() {
         if (this.props.match.params.pokemon) {
             await this.loadPokemon();
-        }   
+        } 
+        else if (!this.props.match.params.pokemon)  {
+            const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?`);
+            const pokemonData = response.body.results;
+    
+            this.setState({ pokedeck: pokemonData });        }
     }
 
     handleChange = (e) => {
@@ -34,13 +40,14 @@ export default class App extends Component {
     }
 
     // Define handleSearch methods and pass them as props
-    async handleSearch () {
-        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}`);
+    handleSearch = async (e) => {
+        e.preventDefault();
+        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex/?pokemon=${this.state.searchQuery}`)
         const pokemonData = response.body.results;
 
         this.setState({ pokedeck: pokemonData });
 
-        // this.props.history.push(this.state.searchQuery);
+        this.props.history.push(this.state.searchQuery);
     }
 
   render() {
@@ -48,7 +55,7 @@ export default class App extends Component {
     const { pokedeck } = this.state;
     const mappedPokemon = pokedeck.map(item => {
         return (
-            <Link to={`pokemon/${pokedeck.pokemon}`}>
+            <Link to={`pokemon/${item.pokemon}`}>
                 <PokeItem pokemon={item} key={item.id.toString()} />
             </Link>
             )
@@ -56,18 +63,20 @@ export default class App extends Component {
         )
         
         return (
-        <div className = "body">
+        <main>
             <Header />
-            <Search 
-                searchQuery={this.state.searchQuery}
-                handleSearch={this.handleSearch}     
-                handleChange={this.handleChange} />
-            <main>
+            <div className="search-div">
+                <Search 
+                    searchQuery={this.state.searchQuery}
+                    handleSearch={this.handleSearch}     
+                    handleChange={this.handleChange} />
+            </div>
+            <div>
                 <ul className='deck-container'>
                     {mappedPokemon}
                 </ul>        
-            </main>
-        </div>
+            </div>
+        </main>
     );
   }
 }
