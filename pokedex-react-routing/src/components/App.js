@@ -8,6 +8,7 @@ import Detail from './Detail';
 import NotFound from './NotFound';
 import Header from './Header';
 import Home from './Home';
+// import List from './List';
 
 export default class App extends Component {
   render() {
@@ -19,7 +20,7 @@ export default class App extends Component {
             {/* <Route exact path="/" render ={ () => <Redirect to="/:pokemon" component={Home} /> } /> */}
             <Route path="/about" component={About} />
             <Route path="/pokemon/:pokemon" component={Detail} />
-            <Route exact path="/:pokemon" component={Home} />
+            <Route exact path="/:search?" component={Home} />
             <Route exact path="/" component={Home} />
             <Route component={NotFound} />
           </Switch>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import request from 'superagent';
 import Search from './Search';
 import getPokemon from './GetPokemon';
@@ -7,7 +7,8 @@ import getPokemon from './GetPokemon';
 
 // Import Components
 import Header from './Header';
-import PokeItem from './PokeItem';
+// import PokeItem from './PokeItem';
+import List from './List';
 
 export default class App extends Component {
     state = {
@@ -51,17 +52,8 @@ export default class App extends Component {
     }
 
   render() {
-    // Map over Pokedeck array
-    const { pokedeck } = this.state;
-    const mappedPokemon = pokedeck.map(item => {
-        return (
-            <Link to={`pokemon/${item.pokemon}`}>
-                <PokeItem pokemon={item} key={item.id.toString()} />
-            </Link>
-            )
-        }
-        )
-        
+        // const { pokedeck } = this.state;
+
         return (
         <main>
             <Header />
@@ -72,9 +64,7 @@ export default class App extends Component {
                     handleChange={this.handleChange} />
             </div>
             <div>
-                <ul className='deck-container'>
-                    {mappedPokemon}
-                </ul>        
+                <List pokedeck={this.state.pokedeck}/>
             </div>
         </main>
     );
