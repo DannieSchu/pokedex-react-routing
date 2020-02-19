@@ -13,6 +13,11 @@ import List from './List';
 export default class App extends Component {
     state = {
         pokedeck: [],
+        searchType: [
+            {pokemon: "pokemon"}, 
+            {type: "" }, 
+            {shape: "" }
+        ],
         searchQuery: this.props.match.params.pokemon
     };
 
@@ -39,11 +44,20 @@ export default class App extends Component {
     handleChange = (e) => {
         this.setState({ searchQuery: e.target.value }); 
     }
+    handleClick = (e) => {
+        // this.state.searchType.map(item => {
+        //     if(item === "search")
+        // })
+        // this.state.searchType.filter(search => )
+
+        this.setState({ searchType: { search: e.target.value }}); 
+
+    }
 
     // Define handleSearch methods and pass them as props
     handleSearch = async (e) => {
         e.preventDefault();
-        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex/?pokemon=${this.state.searchQuery}`)
+        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex/?${this.state.searchType}=${this.state.searchQuery}`)
         const pokemonData = response.body.results;
 
         this.setState({ pokedeck: pokemonData });
@@ -52,7 +66,7 @@ export default class App extends Component {
     }
 
   render() {
-        // const { pokedeck } = this.state;
+        const { pokedeck } = this.state;
 
         return (
         <main>
@@ -60,11 +74,12 @@ export default class App extends Component {
             <div className="search-div">
                 <Search 
                     searchQuery={this.state.searchQuery}
+                    handleClick={this.state.handleClick}
                     handleSearch={this.handleSearch}     
                     handleChange={this.handleChange} />
             </div>
             <div>
-                <List pokedeck={this.state.pokedeck}/>
+                <List pokedeck={pokedeck}/>
             </div>
         </main>
     );
