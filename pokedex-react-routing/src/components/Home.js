@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import request from 'superagent';
 import Search from './Search';
 import getPokemon from './GetPokemon';
@@ -7,17 +6,12 @@ import getPokemon from './GetPokemon';
 
 // Import Components
 import Header from './Header';
-// import PokeItem from './PokeItem';
 import List from './List';
 
 export default class App extends Component {
     state = {
         pokedeck: [],
-        searchType: [
-            {pokemon: "pokemon"}, 
-            {type: "" }, 
-            {shape: "" }
-        ],
+        searchOption: '',
         searchQuery: this.props.match.params.pokemon
     };
 
@@ -38,26 +32,20 @@ export default class App extends Component {
             const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?`);
             const pokemonData = response.body.results;
     
-            this.setState({ pokedeck: pokemonData });        }
+            this.setState({ pokedeck: pokemonData });}
     }
 
     handleChange = (e) => {
         this.setState({ searchQuery: e.target.value }); 
     }
-    handleClick = (e) => {
-        // this.state.searchType.map(item => {
-        //     if(item === "search")
-        // })
-        // this.state.searchType.filter(search => )
-
-        this.setState({ searchType: { search: e.target.value }}); 
-
+    
+    handleOption = (e) => {
+        this.setState({ searchOption: e.target.value });
     }
 
-    // Define handleSearch methods and pass them as props
     handleSearch = async (e) => {
         e.preventDefault();
-        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex/?${this.state.searchType}=${this.state.searchQuery}`)
+        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex/?${this.state.searchOption}=${this.state.searchQuery}`)
         const pokemonData = response.body.results;
 
         this.setState({ pokedeck: pokemonData });
@@ -74,7 +62,8 @@ export default class App extends Component {
             <div className="search-div">
                 <Search 
                     searchQuery={this.state.searchQuery}
-                    handleClick={this.state.handleClick}
+                    // searchOption={this.state.searchOption}
+                    handleOption={this.state.handleOption}
                     handleSearch={this.handleSearch}     
                     handleChange={this.handleChange} />
             </div>

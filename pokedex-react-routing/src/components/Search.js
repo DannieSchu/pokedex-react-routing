@@ -11,32 +11,35 @@ export default class Search extends Component {
                             <TypesMenu handleChange = {this.props.handleChange} />
                             <ShapesMenu handleChange = {this.props.handleChange} />
                         </div> */}
-                        <div className="radio">
+                        <div className="column-container">
                             <label>
                                 Name: 
                                 <input 
                                     type = "radio" 
-                                    name = "name" 
+                                    name = "searchOption" 
                                     value = "pokemon"
-                                    onChange = {this.props.handleClick}
+                                    // checked = {this.props.searchOption === "pokemon"}
+                                    onChange = {this.props.handleOption}
                                     />
                             </label>
                             <label>
                                 Type: 
                                 <input 
                                     type = "radio" 
-                                    name = "type" 
+                                    name = "searchOption"
                                     value = "type"
-                                    onChange = {this.props.handleClick}
+                                    // checked = {this.props.searchOption === "type"}
+                                    onChange = {this.props.handleOption}
                                     />
                             </label>
                             <label>
                                 Shape: 
                                 <input 
                                     type = "radio" 
-                                    name = "shape" 
+                                    name = "searchOption" 
                                     value = "shape"
-                                    onChange = {this.props.handleClick}
+                                    // checked = {this.props.searchOption === "shape"}
+                                    onChange = {this.props.handleOption}
                                     />
                             </label>
 
