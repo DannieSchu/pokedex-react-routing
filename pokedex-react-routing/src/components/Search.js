@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import ShapesMenu from './ShapesMenu'
 
 export default class Search extends Component {
     render() {
@@ -7,10 +6,6 @@ export default class Search extends Component {
             <form className = "options" onSubmit={this.props.handleSearch}>
                 <div className = "search-container">
                     <div className ="searchbar">
-                        {/* <div className = "menu-container">
-                            <TypesMenu handleChange = {this.props.handleChange} />
-                            <ShapesMenu handleChange = {this.props.handleChange} />
-                        </div> */}
                         <div className="column-container">
                             <label>
                                 Name: 
@@ -18,7 +13,7 @@ export default class Search extends Component {
                                     type = "radio" 
                                     name = "searchOption" 
                                     value = "pokemon"
-                                    // checked = {this.props.searchOption === "pokemon"}
+                                    checked = {this.props.searchOption === "pokemon"}
                                     onChange = {this.props.handleOption}
                                     />
                             </label>
@@ -28,7 +23,7 @@ export default class Search extends Component {
                                     type = "radio" 
                                     name = "searchOption"
                                     value = "type"
-                                    // checked = {this.props.searchOption === "type"}
+                                    checked = {this.props.searchOption === "type"}
                                     onChange = {this.props.handleOption}
                                     />
                             </label>
@@ -38,7 +33,7 @@ export default class Search extends Component {
                                     type = "radio" 
                                     name = "searchOption" 
                                     value = "shape"
-                                    // checked = {this.props.searchOption === "shape"}
+                                    checked = {this.props.searchOption === "shape"}
                                     onChange = {this.props.handleOption}
                                     />
                             </label>

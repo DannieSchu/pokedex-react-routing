@@ -11,7 +11,7 @@ import List from './List';
 export default class App extends Component {
     state = {
         pokedeck: [],
-        searchOption: '',
+        searchOption: 'pokemon',
         searchQuery: this.props.match.params.pokemon
     };
 
@@ -19,11 +19,9 @@ export default class App extends Component {
         const response = await getPokemon(this.props.match.params.pokemon);
         const pokemonData = response.body.results;
         
-        // set value of pokedeck
         this.setState({ pokedeck: pokemonData })
     }
 
-    // initialize dom nodes
     async componentDidMount() {
         if (this.props.match.params.pokemon) {
             await this.loadPokemon();
@@ -55,15 +53,15 @@ export default class App extends Component {
 
   render() {
         const { pokedeck } = this.state;
-
+        console.log('this.state.searchOption', this.state.searchOption)
         return (
         <main>
             <Header />
             <div className="search-div">
                 <Search 
                     searchQuery={this.state.searchQuery}
-                    // searchOption={this.state.searchOption}
-                    handleOption={this.state.handleOption}
+                    searchOption={this.state.searchOption}
+                    handleOption={this.handleOption}
                     handleSearch={this.handleSearch}     
                     handleChange={this.handleChange} />
             </div>
